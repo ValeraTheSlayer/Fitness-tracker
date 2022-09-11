@@ -28,11 +28,11 @@ class Training:
     def __init__(self,
                  action: int,
                  duration: float,
-                 weight: float,
+                 weight_kg: float,
                  ) -> None:
         self.action = action
         self.duration = duration
-        self.weight = weight
+        self.weight_kg = weight_kg
 
     def get_distance(self) -> float:
         return self.action * self.LEN_STEP / self.M_IN_KM
