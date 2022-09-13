@@ -1,5 +1,6 @@
 from dataclasses import dataclass
-from typing import Dict, List, Type
+from enum import Enum
+from typing import List
 
 
 @dataclass
@@ -131,16 +132,15 @@ class InvalidInputDataError(Exception):
     pass
 
 
-TRAINING: Dict[str, Type[Training]] = {
-    'SWM': Swimming,
-    'RUN': Running,
-    'WLK': SportsWalking,
-}
+class TRAINING(Enum):
+    SWM = Swimming
+    RUN = Running
+    WLK = SportsWalking
 
 
 def read_package(workout_type: str, data: List[float]) -> Training:
     try:
-        return TRAINING[workout_type](*data)
+        return TRAINING[workout_type].value(*data)
     except (KeyError, TypeError):
         raise InvalidInputDataError(' your data is not correct')
 
